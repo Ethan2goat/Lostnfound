@@ -1,6 +1,23 @@
 # Lost & Found App — Requirements Analysis & Project Plan
 
-Version: 0.6 (CEO plan review, 2026-10-08 — see Changelog)
+Version: 0.6.1 (zero-spend until MVP, 2026-10-22 — see Changelog)
+
+---
+
+## Changelog (v0.6 → v0.6.1)
+
+**Budget rule: spend $0 until the MVP works end to end** (post → match → claim → contact exchange, tested with friends). Anything that costs money waits until then. Where v0.6 assumed a paid item, the free substitute below applies for the MVP:
+
+| v0.6 assumed | MVP (free) | Pay later, when |
+|---|---|---|
+| Apple Developer account ($99/yr) | Test on our own phones with Expo Go | Before App Store / TestFlight submission |
+| Google Play account ($25 one-time) | Expo Go; Android builds sideloaded to testers | Before the Play closed test |
+| Resend + custom domain (~$10/yr) for auth email | "Confirm email" off while testing with friends; before real students sign up, use a free sender that needs no domain (Brevo free tier or a Gmail app password) | Only if free sending limits or deliverability become a problem |
+| CLIP hosted on Modal | Open-source CLIP (`openai/clip-vit-base-patch32`, 512-dim, matches `vector(512)`) run locally for development and the eval set, then on a free Hugging Face Space (CPU) for the MVP | If cold starts or limits on the free Space hurt real usage |
+
+**Timeline impact (T12):** store submissions (TestFlight, Play closed test) move from "by Dec 6" to "after the MVP works", which pushes the store-approved public launch later than Spring 2027 week 1 unless the MVP is done early. Accepted trade-off: no money spent on a product that doesn't work yet. Re-plan the launch date once the MVP is working.
+
+**Must be undone before real users:** "Confirm email" turned back on (with working email sending), so nobody can sign up as someone else's utdallas.edu address.
 
 ---
 
@@ -136,7 +153,7 @@ MVP addresses (1) directly via embedding-based semantic \+ visual matching. (2) 
 | A3 | Users have `.edu` email and are willing to be contacted by email | If not, need in-app messaging, which adds moderation surface |
 | A4 | Physical handover happens off-platform | If the app must coordinate handover locations, that's a whole additional module |
 | A5 | Single language (English) at launch | Multilingual would change the embedding model choice |
-| A6 | Budget for AI inference is \~$0 (student project) | This is why MVP uses a self-hosted embedding model rather than a paid per-call API |
+| A6 | Budget is $0 until the MVP works end to end: no paid AI inference, hosting, domains, or store accounts (see v0.6.1 changelog for free substitutes) | This is why MVP uses an open-source embedding model on free hosting rather than a paid per-call API |
 
 ---
 
@@ -304,8 +321,8 @@ Priority: **M** \= MVP (must have), **S** \= should have (early Phase 2), **C** 
 | Ranking | Custom scoring function  | See ADR-5 |
 | Vision AI | *(Phase 2 only)* Claude API, for attribute enrichment only | Not used in MVP pipeline at all |
 | Orchestration | Plain functions for MVP; LangGraph in Phase 2 |  |
-| Email | Resend or Supabase SMTP | Transactional only |
-| Hosting | Expo Application Services (EAS) for app builds/distribution, Supabase (backend) |  |
+| Email | Free SMTP (Brevo free tier or Gmail app password) for MVP; Resend + domain later if needed | Transactional only. $0 until MVP (v0.6.1) |
+| Hosting | Expo Go for MVP testing; EAS + store accounts at launch; Supabase free tier (backend); CLIP on a free Hugging Face Space | $0 until MVP (v0.6.1) |
 
 ---
 

@@ -17,6 +17,12 @@ Full requirements, architecture decisions, and security design: see
 | Vector search | pgvector |
 | Embeddings | Hosted CLIP/SigLIP endpoint, called server-side from an Edge Function (planned) |
 
+## Budget
+
+**$0 until the MVP works end to end.** Don't sign up for anything paid (domains, app store accounts,
+model hosting) before then. Free substitutes are listed in [`LostnFound.md`](./LostnFound.md) (v0.6.1
+changelog).
+
 ## Prerequisites
 
 - **Node.js LTS** (currently 24.x) — install via [nvm](https://github.com/nvm-sh/nvm), not
