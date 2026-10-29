@@ -22,6 +22,7 @@ export default function SignIn() {
   return (
     <AuthForm
       title="Sign in"
+      subtitle="Use your utdallas.edu email and password."
       submitLabel="Sign in"
       onSubmit={signIn}
       footer={

@@ -26,6 +26,7 @@ export default function SignUp() {
   return (
     <AuthForm
       title="Create account"
+      subtitle="Only utdallas.edu emails can join, so everyone here is a UTD student."
       submitLabel="Sign up"
       onSubmit={signUp}
       notice={notice}
